@@ -9,13 +9,15 @@ export default async function Page() {
 
   return (
     <ul>
-      {posts.map((post) => (
-        <li key={post.id}>
-          <h1>{post.title}</h1>
-          <h2>by {post.author.name}</h2>
-          <p>{post.content}</p>
-        </li>
-      ))}
+      {posts
+        .filter((post) => post.published)
+        .map((post) => (
+          <li key={post.id}>
+            <h1>{post.title}</h1>
+            <h2>by {post.author.name}</h2>
+            <p>{post.content}</p>
+          </li>
+        ))}
     </ul>
   );
 }
