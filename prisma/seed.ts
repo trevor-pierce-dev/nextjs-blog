@@ -2,16 +2,13 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-async function clearSeedData() {
-  await prisma.post.deleteMany({});
-  await prisma.user.deleteMany({});
-}
-
-async function createSeedData() {
-  await prisma.user.create({
-    data: {
+async function main() {
+  const trevor = await prisma.user.upsert({
+    where: { email: "trevor@test.io" },
+    update: {},
+    create: {
+      email: "trevor@test.io",
       name: "Trevor",
-      email: "trevor@test.edu",
       posts: {
         create: {
           title: "Hello World",
@@ -21,13 +18,7 @@ async function createSeedData() {
       },
     },
   });
-}
-
-async function main() {
-  await clearSeedData();
-  await createSeedData();
-
-  console.info("Seed data populated");
+  console.log({ trevor });
 }
 
 main()
