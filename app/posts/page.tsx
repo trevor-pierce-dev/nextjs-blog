@@ -10,16 +10,14 @@ export default async function Page() {
   });
 
   return (
-    <div className="flex flex-col items-center p-5">
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-4 w-full md:w-1/2">
-        {posts
-          .filter((post) => post.published)
-          .map((post) => (
-            <Link href={`/posts/${post.id}`}>
-              <Card post={post} />
-            </Link>
-          ))}
-      </div>
+    <div className="grid md:grid-cols-3 grid-cols-1 gap-4 w-full md:w-1/2">
+      {posts
+        .filter((post) => post.published)
+        .map((post) => (
+          <Link href={`/posts/${post.id}`}>
+            <Card post={post} />
+          </Link>
+        ))}
     </div>
   );
 }
