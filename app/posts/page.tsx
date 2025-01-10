@@ -25,7 +25,6 @@ export default async function Page() {
                   day: "numeric",
                 })}
               </h3>
-              <hr className="border-zinc-400" />
             </article>
           ))}
       </div>
