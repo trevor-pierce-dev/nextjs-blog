@@ -13,7 +13,7 @@ export default async function Page({
   });
   return (
     <article
-      className="bg-zinc-100 border-1 rounded shadow-xl p-2 w-full md:w-1/3"
+      className="bg-zinc-100 border-1 rounded shadow-xl p-2 w-full md:w-1/2"
       key={post.id}
     >
       <h2 className="text-xl">{post.title}</h2>
