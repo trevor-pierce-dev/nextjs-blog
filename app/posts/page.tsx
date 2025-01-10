@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import Link from "next/link";
 import Card from "@/app/posts/_components/card";
 
 export default async function Page() {
@@ -14,7 +15,9 @@ export default async function Page() {
         {posts
           .filter((post) => post.published)
           .map((post) => (
-            <Card post={post} />
+            <Link href={`/posts/${post.id}`}>
+              <Card post={post} />
+            </Link>
           ))}
       </div>
     </div>
