@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import Card from "@/app/posts/_components/card";
 
 export default async function Page() {
   const posts = await prisma.post.findMany({
@@ -13,19 +14,7 @@ export default async function Page() {
         {posts
           .filter((post) => post.published)
           .map((post) => (
-            <article
-              className="bg-zinc-50 border-2 rounded border-solid border-zinc-200 p-2"
-              key={post.id}
-            >
-              <h2 className="text-xl">{post.title}</h2>
-              <h3 className="text-xs">
-                {post.createdAt.toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </h3>
-            </article>
+            <Card post={post} />
           ))}
       </div>
     </div>
