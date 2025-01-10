@@ -10,11 +10,28 @@ async function main() {
       email: "trevor@test.io",
       name: "Trevor",
       posts: {
-        create: {
-          title: "Hello World",
-          content: "Just a test post",
-          published: true,
-        },
+        create: [
+          {
+            title: "Hello World",
+            content: "Just a test post.",
+            published: true,
+          },
+          {
+            title: "Goodbye World",
+            content: "What if I typed something else instead of hello world.",
+            published: true,
+          },
+          {
+            title: "Nonsense",
+            content: "I can type whatever I want here because I feel like it.",
+            published: true,
+          },
+          {
+            title: "Batman Spotted",
+            content: "Why is Batman covered in spots? Weird.",
+            published: true,
+          },
+        ],
       },
     },
   });
