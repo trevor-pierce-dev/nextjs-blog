@@ -14,7 +14,7 @@ export default async function Page() {
       {posts
         .filter((post) => post.published)
         .map((post) => (
-          <Link href={`/posts/${post.id}`}>
+          <Link href={`/posts/${post.id}`} key={post.id}>
             <Card post={post} />
           </Link>
         ))}
