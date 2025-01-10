@@ -17,7 +17,13 @@ export default async function Page() {
             key={post.id}
           >
             <h2 className="text-lg">{post.title}</h2>
-            <h3 className="text-xs">by {post.author.name}</h3>
+            <h3 className="text-xs">
+              {post.createdAt.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </h3>
             <hr className="border-zinc-400" />
           </article>
         ))}
