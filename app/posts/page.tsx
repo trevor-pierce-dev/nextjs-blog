@@ -18,7 +18,6 @@ export default async function Page() {
           >
             <h1>{post.title}</h1>
             <h2>by {post.author.name}</h2>
-            <p>{post.content}</p>
           </article>
         ))}
     </div>
