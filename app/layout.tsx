@@ -1,4 +1,5 @@
 import "@/app/global.css";
+import Header from "@/app/_components/header";
 
 export default function RootLayout({
   children,
@@ -8,7 +9,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="flex flex-col items-center p-3">{children}</div>
+        <div className="flex flex-col items-center p-3">
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );
