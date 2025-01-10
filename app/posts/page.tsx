@@ -19,7 +19,6 @@ export default async function Page() {
             <h2 className="text-lg">{post.title}</h2>
             <h3 className="text-xs">by {post.author.name}</h3>
             <hr className="border-zinc-400" />
-            <p>{post.content.substring(0, 30)}...</p>
           </article>
         ))}
     </div>
