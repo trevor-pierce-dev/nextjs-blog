@@ -13,11 +13,13 @@ export default async function Page() {
         .filter((post) => post.published)
         .map((post) => (
           <article
-            className="border rounded border-solid border-black w-full md:w-1/3"
+            className="bg-zinc-50 border-2 rounded border-solid border-zinc-200 w-full p-2 md:w-1/3"
             key={post.id}
           >
-            <h1>{post.title}</h1>
-            <h2>by {post.author.name}</h2>
+            <h2 className="text-lg">{post.title}</h2>
+            <h3 className="text-xs">by {post.author.name}</h3>
+            <hr className="border-zinc-400" />
+            <p>{post.content.substring(0, 30)}...</p>
           </article>
         ))}
     </div>
