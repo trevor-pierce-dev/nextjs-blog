@@ -1,23 +1,31 @@
 "use client";
 
-import type { Post } from "@prisma/client";
 import { useState } from "react";
 
 export default function Form({
+  title,
   post,
   updatePost,
 }: {
-  post: Post;
+  title: string;
+  post?: {
+    title: string;
+    content: string;
+    published: boolean;
+    id: number | undefined;
+  };
   updatePost: (formData: FormData) => void;
 }) {
-  const [editedPost, setEditedPost] = useState(post);
+  const [editedPost, setEditedPost] = useState(
+    post ?? { title: "", content: "", published: false, id: null }
+  );
 
   return (
     <form
       className="bg-zinc-100 border-1 rounded shadow-xl p-3 w-full md:w-1/2 text-lg flex flex-col gap-4"
       action={updatePost}
     >
-      <h1 className="text-xl">Update Post</h1>
+      <h1 className="text-xl">{title}</h1>
       <hr />
       <div>
         <label htmlFor="title" className="block">
@@ -60,7 +68,9 @@ export default function Form({
         />
         <label htmlFor="published">Publish?</label>
       </div>
-      <input type="hidden" id="id" name="id" value={editedPost.id} />
+      {editedPost.id && (
+        <input type="hidden" id="id" name="id" value={editedPost.id} />
+      )}
       <div>
         <button
           type="submit"

@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import Form from "@/app/posts/[id]/edit/_components/form";
+import Form from "@/app/posts/_components/form";
 
 function convertCheckboxToBool(value: FormDataEntryValue | null): boolean {
   return value != null && value.toString() == "on";
@@ -42,5 +42,16 @@ export default async function Page({
     },
   });
 
-  return <Form post={post} updatePost={updatePost} />;
+  return (
+    <Form
+      title={"Update Post"}
+      post={{
+        title: post.title,
+        content: post.content,
+        id: post.id,
+        published: post.published,
+      }}
+      updatePost={updatePost}
+    />
+  );
 }

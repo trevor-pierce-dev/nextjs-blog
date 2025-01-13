@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
+import Form from "@/app/posts/_components/form";
 
 function convertCheckboxToBool(value: FormDataEntryValue | null): boolean {
   return value != null && value.toString() == "on";
@@ -26,46 +27,5 @@ async function createPost(formData: FormData) {
 }
 
 export default function Page() {
-  return (
-    <form
-      className="bg-zinc-100 border-1 rounded shadow-xl p-3 w-full md:w-1/2 text-lg flex flex-col gap-4"
-      action={createPost}
-    >
-      <h1 className="text-xl">Create a New Post</h1>
-      <hr />
-      <div>
-        <label htmlFor="title" className="block">
-          Title:
-        </label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          className="border rounded border-zinc-300 w-full"
-        />
-      </div>
-      <div>
-        <label htmlFor="content" className="content">
-          Content:
-        </label>
-        <textarea
-          id="content"
-          name="content"
-          className="border rounded border-zinc-300 w-full"
-        />
-      </div>
-      <div>
-        <input type="checkbox" id="published" name="published" />
-        <label htmlFor="published">Publish?</label>
-      </div>
-      <div>
-        <button
-          type="submit"
-          className="float-end border text-white border-1 rounded border-zinc-300 p-2 bg-green-700"
-        >
-          Submit this form
-        </button>
-      </div>
-    </form>
-  );
+  return <Form title="Create New Post" updatePost={createPost} />;
 }
