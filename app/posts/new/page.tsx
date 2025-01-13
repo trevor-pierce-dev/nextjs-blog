@@ -1,18 +1,23 @@
 import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 
+function convertCheckboxToBool(value: FormDataEntryValue | null): boolean {
+  return value != null && value.toString() == "on";
+}
+
 async function createPost(formData: FormData) {
   "use server";
   const rawFormData = {
     title: formData.get("title"),
     content: formData.get("content"),
+    published: convertCheckboxToBool(formData.get("published")),
   };
 
   const post = await prisma.post.create({
     data: {
       title: rawFormData.title.toString(),
       content: rawFormData.content.toString(),
-      published: true,
+      published: rawFormData.published,
       authorId: 1,
     },
   });
@@ -48,6 +53,10 @@ export default function Page() {
           name="content"
           className="border rounded border-zinc-300 w-full"
         />
+      </div>
+      <div>
+        <input type="checkbox" id="published" name="published" />
+        <label htmlFor="published">Publish?</label>
       </div>
       <div>
         <button
